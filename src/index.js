@@ -1,101 +1,29 @@
-// The provided course information.
-const CourseInfo = {
-  id: 451,
-  name: "Introduction to JavaScript"
-};
+let mainEl = document.querySelector("main");
+mainEl.style.setProperty("background-color", "var(--main-bg)");
+mainEl.innerHTML = "<h1>DOM Manipulation</h1>"; // giving mainEl a h1
+mainEl.classList.add("flex-ctr"); //adding a css class "flex-ctr"
 
-// The provided assignment group.
-const AssignmentGroup = {
-  id: 12345,
-  name: "Fundamentals of JavaScript",
-  course_id: 451,
-  group_weight: 25,
-  assignments: [
-    {
-      id: 1,
-      name: "Declare a Variable",
-      due_at: "2023-01-25",
-      points_possible: 50
-    },
-    {
-      id: 2,
-      name: "Write a Function",
-      due_at: "2023-02-27",
-      points_possible: 150
-    },
-    {
-      id: 3,
-      name: "Code the World",
-      due_at: "3156-11-15",
-      points_possible: 500
-    }
-  ]
-};
+let topMenuEl = document.getElementById("top-menu"); // caching  the nav and calling it topMenuEl
+topMenuEl.style.setProperty("height", "100%"); // Giving it a height of 100%
+topMenuEl.style.setProperty("background-color", "var(--top-menu-bg)"); // Setting the background color
+topMenuEl.classList.add("flex-around");
 
-// The provided learner submission data.
-const LearnerSubmissions = [
-  {
-    learner_id: 125,
-    assignment_id: 1,
-    submission: {
-      submitted_at: "2023-01-25",
-      score: 47
-    }
-  },
-  {
-    learner_id: 125,
-    assignment_id: 2,
-    submission: {
-      submitted_at: "2023-02-12",
-      score: 150
-    }
-  },
-  {
-    learner_id: 125,
-    assignment_id: 3,
-    submission: {
-      submitted_at: "2023-01-25",
-      score: 400
-    }
-  },
-  {
-    learner_id: 132,
-    assignment_id: 1,
-    submission: {
-      submitted_at: "2023-01-24",
-      score: 39
-    }
-  },
-  {
-    learner_id: 132,
-    assignment_id: 2,
-    submission: {
-      submitted_at: "2023-03-07",
-      score: 140
-    }
-  }
+let subMenuEl = document.getElementById("sub-menu");
+subMenuEl.style.setProperty("height", "100%");
+subMenuEl.style.setProperty("background-color", "var(--sub-menu-bg)");
+subMenuEl.style.setProperty("position", "absolute");
+subMenuEl.style.setProperty("top", "0");
+subMenuEl.classList.add("flex-around");
+let menuLinks = [
+  { text: "about", href: "/about" },
+  { text: "catalog", href: "/catalog" },
+  { text: "orders", href: "/orders" },
+  { text: "account", href: "/account" },
 ];
 
-function getLearnerData(course, ag, submissions) {
-  // here, we would process this data to achieve the desired result.
-  const result = [
-    {
-      id: 125,
-      avg: 0.985, // (47 + 150) / (50 + 150)
-      1: 0.94, // 47 / 50
-      2: 1.0 // 150 / 150
-    },
-    {
-      id: 132,
-      avg: 0.82, // (39 + 125) / (50 + 150)
-      1: 0.78, // 39 / 50
-      2: 0.833 // late: (140 - 15) / 150
-    }
-  ];
-
-  return result;
+for (let i = 0; i < menuLinks.length; i++) {
+  let a = document.createElement("a"); // Creating the anchor tag
+  a.setAttribute("href", menuLinks[i].href); // Retrieving the href from menuLinks array
+  a.textContent = menuLinks[i].text; // Retrieving text value from menuLinks array
+  topMenuEl.appendChild(a); // Appending the anchor element to topMenuEl
 }
-
-const result = getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions);
-
-console.log(result);
